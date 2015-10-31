@@ -13,24 +13,39 @@
 ;
 
 (define main (lambda (arguments)
-    (print (sum-of-even-valued-fibonacci-numbers 4000000))))
+    (print (sum-of-even-valued-fibonacci-numbers (- 4000000 1)))))
 
-(define sum-of-even-valued-fibonacci-numbers (lambda (x)
-    (define sum-of-even-valued-fibonacci-numbers (lambda (x1 x2 maximum sum)
+(define unit-test (lambda()
+    (use gauche.test)
+    (test-start "sum-of-even-valued-fibonacci-numbers")
+    (test* "call by 1" 0 (sum-of-even-valued-fibonacci-numbers 1))
+    (test* "call by 2" 2 (sum-of-even-valued-fibonacci-numbers 2))
+    (test* "call by 3" 2 (sum-of-even-valued-fibonacci-numbers 3))
+    (test* "call by 5" 2 (sum-of-even-valued-fibonacci-numbers 5))
+    (test* "call by 8" 10 (sum-of-even-valued-fibonacci-numbers 8))
+    (test* "call by 13" 10 (sum-of-even-valued-fibonacci-numbers 13))
+    (test* "call by 21" 10 (sum-of-even-valued-fibonacci-numbers 21))
+    (test* "call by 34" 44 (sum-of-even-valued-fibonacci-numbers 34))
+    (test* "call by 55" 44 (sum-of-even-valued-fibonacci-numbers 55))
+    (test* "call by 89" 44 (sum-of-even-valued-fibonacci-numbers 89))
+    (test-end)))
+
+(define sum-of-even-valued-fibonacci-numbers (lambda (maximum-value)
+    (define sum-of-even-valued-fibonacci-numbers (lambda (current-value next-value maximum-value sum)
         (cond
-            ((> x2 maximum)
+            ((> current-value maximum-value)
                 sum)
-            ((even? x2)
+            ((even? current-value)
                 (sum-of-even-valued-fibonacci-numbers
-                    x2
-                    (+ x1 x2)
-                    maximum
-                    (+ sum x2)))
+                    next-value
+                    (+ current-value next-value)
+                    maximum-value
+                    (+ sum current-value)))
             (else
                 (sum-of-even-valued-fibonacci-numbers
-                    x2
-                    (+ x1 x2)
-                    maximum
+                    next-value
+                    (+ current-value next-value)
+                    maximum-value
                     sum)))))
-    (sum-of-even-valued-fibonacci-numbers 0 1 (- x 1) 0)))
+    (sum-of-even-valued-fibonacci-numbers 1 2 maximum-value 0)))
 
