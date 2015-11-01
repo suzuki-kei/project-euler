@@ -7,11 +7,12 @@
 ;     What is the largest prime factor of the number 600851475143 ?
 ;
 
+(use gauche.test)
+
 (define main (lambda (arguments)
     (print (largest-prime-factor 600851475143))))
 
 (define unit-test (lambda ()
-    (use gauche.test)
     (test-start "factorize")
     (test* "call by 1" '() (factorize 1))
     (test* "call by 2" '(2) (factorize 2))

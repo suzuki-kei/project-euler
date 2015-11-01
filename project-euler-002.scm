@@ -12,11 +12,12 @@
 ;     exceed four million, find the sum of the even-valued terms.
 ;
 
+(use gauche.test)
+
 (define main (lambda (arguments)
     (print (sum-of-even-valued-fibonacci-numbers (- 4000000 1)))))
 
 (define unit-test (lambda()
-    (use gauche.test)
     (test-start "sum-of-even-valued-fibonacci-numbers")
     (test* "call by 1" 0 (sum-of-even-valued-fibonacci-numbers 1))
     (test* "call by 2" 2 (sum-of-even-valued-fibonacci-numbers 2))

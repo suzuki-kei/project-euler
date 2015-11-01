@@ -9,11 +9,12 @@
 ;     Find the sum of all the multiples of 3 or 5 below 1000.
 ;
 
+(use gauche.test)
+
 (define main (lambda (arguments)
     (print (sum-of-multiples 1000))))
 
 (define unit-test (lambda ()
-    (use gauche.test)
     (test-start "sum-of-multiples")
     (test* "call by 0" 0 (sum-of-multiples 0))
     (test* "call by 1" 0 (sum-of-multiples 1))
