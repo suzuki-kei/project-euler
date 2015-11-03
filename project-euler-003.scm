@@ -10,11 +10,14 @@
 (use gauche.test)
 
 (define main (lambda (arguments)
+    (unit-test)
     (print (largest-prime-factor 600851475143))))
 
 (define unit-test (lambda ()
     (test-start "factorize")
-    (test* "call by 1" '() (factorize 1))
+    (test* "call by -1" #f (factorize -1))
+    (test* "call by 0" #f (factorize 0))
+    (test* "call by 1" '(1) (factorize 1))
     (test* "call by 2" '(2) (factorize 2))
     (test* "call by 3" '(3) (factorize 3))
     (test* "call by 4" '(2 2) (factorize 4))
@@ -41,14 +44,23 @@
 (define largest-prime-factor (lambda (x)
     (car (sort (factorize x) >=))))
 
+; x を素因数分解する.
 (define factorize (lambda (x)
     (define factorize (lambda (x divisor factors)
         (cond
-            ((< x divisor)
+            ((<= x 1)
                 factors)
             ((= (modulo x divisor) 0)
                 (factorize (/ x divisor) divisor (cons divisor factors)))
             (else
                 (factorize x (+ divisor 1) factors)))))
-    (factorize x 2 '())))
+    (cond
+        ((< x 1)
+            #f)
+        ((= x 1)
+            '(1))
+        ((> x 1)
+            (factorize x 2 '()))
+        (else
+            #f))))
 
