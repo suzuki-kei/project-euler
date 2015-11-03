@@ -19,6 +19,9 @@
     (print (sum-of-even-valued-fibonacci-numbers (- 4000000 1)))))
 
 (define unit-test (lambda()
+    (test-sum-of-even-valued-fibonacci-numbers)))
+
+(define test-sum-of-even-valued-fibonacci-numbers (lambda ()
     (test-start "sum-of-even-valued-fibonacci-numbers")
     (test* "call by 1" 0 (sum-of-even-valued-fibonacci-numbers 1))
     (test* "call by 2" 2 (sum-of-even-valued-fibonacci-numbers 2))

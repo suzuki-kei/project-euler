@@ -18,6 +18,10 @@
     (print (largest-palindrome-product 100 999))))
 
 (define unit-test (lambda ()
+    (test-palindrome-number?)
+    (test-largest-palindrome-product)))
+
+(define test-palindrome-number? (lambda ()
     (test-start "palindrome-number?")
     (test* "call by -1" #f (palindrome-number? -1))
     (test* "call by 0" #t (palindrome-number? 0))
@@ -31,6 +35,9 @@
     (test* "call by 101" #t (palindrome-number? 101))
     (test* "call by 102" #f (palindrome-number? 102))
     (test* "call by 12321" #t (palindrome-number? 12321))
+    (test-end)))
+
+(define test-largest-palindrome-product (lambda ()
     (test-start "largest-palindrome-product")
     (test* "call by 10 and 99" 9009 (largest-palindrome-product 10 99))
     (test-end)))

@@ -14,6 +14,10 @@
     (print (largest-prime-factor 600851475143))))
 
 (define unit-test (lambda ()
+    (test-factorize)
+    (test-largest-prime-factor)))
+
+(define test-factorize (lambda ()
     (test-start "factorize")
     (test* "call by -1" #f (factorize -1))
     (test* "call by 0" #f (factorize 0))
@@ -27,7 +31,9 @@
     (test* "call by 8" '(2 2 2) (factorize 8))
     (test* "call by 9" '(3 3) (factorize 9))
     (test* "call by 10" '(5 2) (factorize 10))
-    (test-end)
+    (test-end)))
+
+(define test-largest-prime-factor (lambda ()
     (test-start "largest-prime-factor")
     (test* "call by 2" 2 (largest-prime-factor 2))
     (test* "call by 3" 3 (largest-prime-factor 3))

@@ -18,6 +18,10 @@
     (print (nth-prime 10001))))
 
 (define unit-test (lambda ()
+    (test-sequence)
+    (test-prime?)))
+
+(define test-sequence (lambda ()
     (test-start "sequence")
     (test* "#1" '() (sequence 1 -1))
     (test* "#2" '() (sequence 1 0))
@@ -25,7 +29,9 @@
     (test* "#4" '(1 2) (sequence 1 2))
     (test* "#5" '(1 2 3) (sequence 1 3))
     (test* "#6" '(4 5 6) (sequence 4 6))
-    (test-end)
+    (test-end)))
+
+(define test-prime? (lambda ()
     (test-start "prime?")
     (test* "call by -1" #f (prime? -1))
     (test* "call by 0" #f (prime? 0))

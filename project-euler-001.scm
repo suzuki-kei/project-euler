@@ -16,6 +16,9 @@
     (print (sum-of-multiples 1000))))
 
 (define unit-test (lambda ()
+    (test-sum-of-multiples)))
+
+(define test-sum-of-multiples (lambda ()
     (test-start "sum-of-multiples")
     (test* "call by 0" 0 (sum-of-multiples 0))
     (test* "call by 1" 0 (sum-of-multiples 1))

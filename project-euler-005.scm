@@ -18,6 +18,9 @@
     (print (smallest-multiple (iota 20 1)))))
 
 (define unit-test (lambda ()
+    (test-smallest-multiple)))
+
+(define test-smallest-multiple (lambda ()
     (test-start "smallest-multiple")
     (test* "#" 1 (smallest-multiple '(1)))
     (test* "#" 2 (smallest-multiple '(1 2)))
