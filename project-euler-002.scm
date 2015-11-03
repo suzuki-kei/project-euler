@@ -15,6 +15,7 @@
 (use gauche.test)
 
 (define main (lambda (arguments)
+    (unit-test)
     (print (sum-of-even-valued-fibonacci-numbers (- 4000000 1)))))
 
 (define unit-test (lambda()

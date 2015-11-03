@@ -12,6 +12,7 @@
 (use gauche.test)
 
 (define main (lambda (arguments)
+    (unit-test)
     (print (sum-of-multiples 1000))))
 
 (define unit-test (lambda ()

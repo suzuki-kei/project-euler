@@ -13,6 +13,7 @@
 (use gauche.test)
 
 (define main (lambda (arguments)
+    (unit-test)
     (print (largest-palindrome-product 10 99))
     (print (largest-palindrome-product 100 999))))
 
