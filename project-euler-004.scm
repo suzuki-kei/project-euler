@@ -82,6 +82,13 @@
 
 ; x が回文数であるか判定する.
 (define palindrome-number? (lambda (x)
-    (let ((string (number->string x)))
-        (equal? string (string-reverse string)))))
+    (if (< x 0) #f
+        (let ((digits (split-to-digits x)))
+            (equal? digits (reverse digits))))))
+
+(define split-to-digits (lambda (x)
+    (define split-to-digits (lambda (x digits)
+        (if (= x 0) (reverse digits)
+            (split-to-digits (div x 10) (cons (modulo x 10) digits)))))
+    (split-to-digits x '())))
 
