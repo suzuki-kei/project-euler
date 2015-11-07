@@ -18,8 +18,19 @@
     (print (largest-palindrome-product 100 999))))
 
 (define unit-test (lambda ()
+    (test-sequence)
     (test-palindrome-number?)
     (test-largest-palindrome-product)))
+
+(define test-sequence (lambda ()
+    (test-start "sequence")
+    (test* "#1" '() (sequence 1 -1))
+    (test* "#2" '() (sequence 1 0))
+    (test* "#3" '(1) (sequence 1 1))
+    (test* "#4" '(1 2) (sequence 1 2))
+    (test* "#5" '(1 2 3) (sequence 1 3))
+    (test* "#6" '(4 5 6) (sequence 4 6))
+    (test-end)))
 
 (define test-palindrome-number? (lambda ()
     (test-start "palindrome-number?")
@@ -64,8 +75,10 @@
         (sort palindrome-numbers >=))))
 
 ; lower 以上 upper 以下の整数からなるリストを生成する.
+; lower が upper より大きい場合は空のリストを生成する.
 (define sequence (lambda (lower upper)
-    (iota (+ (- upper lower) 1) lower)))
+    (if (> lower upper) '()
+        (iota (+ (- upper lower) 1) lower))))
 
 ; x が回文数であるか判定する.
 (define palindrome-number? (lambda (x)

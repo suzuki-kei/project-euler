@@ -60,6 +60,8 @@
                 (primes (+ x 1) leading-primes)))))
     (car (primes 2 '()))))
 
+; lower 以上 upper 以下の整数からなるリストを生成する.
+; lower が upper より大きい場合は空のリストを生成する.
 (define sequence (lambda (lower upper)
     (if (> lower upper) '()
         (iota (+ (- upper lower) 1) lower))))
